@@ -17,6 +17,8 @@
     repo: https://github.com/franklinobasy/tooling.git
     dest: /var/www/html
     force: yes
+    clone: no
+    update: no
 
 - name: copy html content to one level up
   become: true
