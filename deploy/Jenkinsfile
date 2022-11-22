@@ -45,6 +45,9 @@ pipeline {
     stage('Cleanup') {
         steps {
             cleanWs()
+            script {
+                sh 'echo "workspace cleaned!"'
+            }
         }
     }
     }
