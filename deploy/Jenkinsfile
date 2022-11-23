@@ -18,29 +18,29 @@ pipeline {
         }
     }
 
-    stage('Checkout SCM') {
-        steps{
-            git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/franklinobasy/ansible-config-mgt.git'
-        }
+  stage('Checkout SCM') {
+      steps{
+          git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/franklinobasy/ansible-config-mgt.git'
       }
+    }
 
-    stage('Prepare Ansible For Execution') {
-        steps {
-          sh 'echo ${WORKSPACE}' 
-          sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'  
-        }
+  stage('Prepare Ansible For Execution') {
+      steps {
+        sh 'echo ${WORKSPACE}' 
+        sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'  
       }
+    }
 
-    stage('Run Ansible playbook') {
-        steps {
-          ansiblePlaybook become: true, credentialsId: 'ec2-instances-private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
-        }
+  stage('Run Ansible playbook') {
+      steps {
+        ansiblePlaybook become: true, credentialsId: 'ec2-instances-private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
       }
-    
-    stage('Clean Workspace after build'){
-        steps{
-          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
-        }
+    }
+  
+  stage('Clean Workspace after build'){
+      steps{
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
       }
+    }
   }
 }
