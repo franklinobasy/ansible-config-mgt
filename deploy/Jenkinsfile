@@ -29,7 +29,7 @@ pipeline {
 
     stage('Run Ansible playbook') {
         steps {
-           ansiblePlaybook become: true, colorized: true, credentialsId: 'devops-private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'
+          ansiblePlaybook become: true, credentialsId: 'ec2-instances-private-key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'
         }
       }
     
