@@ -7,9 +7,9 @@
     - name: install remi and rhel repo
       ansible.builtin.yum:
         name: 
-          - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+          - https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
           - dnf-utils
-          - http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+          - http://rpms.remirepo.net/enterprise/remi-release-9.rpm
         disable_gpg_check: yes
 
     
@@ -50,10 +50,10 @@
 
     - name: Download the artifact
       get_url:
-        url: http://3.125.156.235:8082/artifactory/PBL/php-todo
+        url: http://34.205.26.176:8082/artifactory/PBL/php-todo
         dest: /home/ec2-user/
         url_username: admin
-        url_password: APBKm4qXoDaoE4pTfHAD6iPnJMh  
+        url_password: AP2hj1nazC6pmCw1XfdKsAiyyoc  
 
 
     - name: unzip the artifacts
